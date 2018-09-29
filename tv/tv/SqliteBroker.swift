@@ -6,8 +6,14 @@
 //  Copyright © 2018 Michael Chirico. All rights reserved.
 //
 
-import Foundation
+/*
+ 
+ References:
+ https://www.raywenderlich.com/385-sqlite-with-swift-tutorial-getting-started
+ 
+ */
 
+import Foundation
 
 import UIKit
 import SQLite3
@@ -361,9 +367,7 @@ class SqliteBroker {
       let name = sqlite3_column_text(statement, 1)
       if name != nil {
         
-        let rawPointer = UnsafeRawPointer(name!)
-        let pointer = rawPointer.assumingMemoryBound(to: UInt8.self)
-        let nameString = String(pointer.pointee)
+        let nameString = String(cString: name!)
         
         // let nameString = String(cString: UnsafePointer<Int8>(name!))
         print("name = \(nameString)")
@@ -494,9 +498,6 @@ class SqliteBroker {
         }
         
         
-        
-        
-        
         /*
          if let descString = String(validatingUTF8: UnsafePointer<Int8>(des!)) {
          if blob != nil {
@@ -587,6 +588,98 @@ class SqliteBroker {
   }
   
   
+  /*
+   Example Usage:
+   
+   see: sqliteTests.swift
+   
+   */
+  func sqlExe(table: String, stmt: String){
+    
+    let documents = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+    let fileURL = documents.appendingPathComponent(table)
+    
+    if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
+      print("error opening database")
+    }
+    
+    if sqlite3_exec(db, stmt, nil, nil, nil) != SQLITE_OK {
+      let errmsg = String(cString: sqlite3_errmsg(db))
+      print("error on sqlite3_exec: \(errmsg)")
+       print("stmt: \(stmt)")
+    }
+    
+    if sqlite3_close(db) != SQLITE_OK {
+      print("error closing database")
+    }
+    db = nil
+  }
+  
+  
+  struct Result {
+    var msg: String
+    var row: Int
+    var timeStamp: String
+  }
+  
+  
+  func sqlQuery(table: String, stmt: String) -> [Result] {
+    var statement: OpaquePointer? = nil
+    
+    let documents = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+    let fileURL = documents.appendingPathComponent(table)
+    
+    if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
+      print("error opening database")
+    }
+    
+    statement = nil
+    
+    if sqlite3_prepare_v2(db, stmt, -1, &statement, nil) != SQLITE_OK {
+      let errmsg = String(cString: sqlite3_errmsg(db))
+      print("error preparing select: \(errmsg)")
+    }
+    
+    var r = [Result]()
+    
+    while sqlite3_step(statement) == SQLITE_ROW {
+      let row = sqlite3_column_int64(statement, 0)
+      print("id = \(row); ", terminator: "")
+      
+      let msg = sqlite3_column_text(statement, 1)
+      let timeStamp = sqlite3_column_text(statement, 2)
+      
+      if msg != nil && timeStamp != nil {
+        
+        let msgString = String(cString: msg!)
+        let timeStampS = String(cString: timeStamp!)
+
+        r.append(Result(msg: msgString,row: Int(row), timeStamp: timeStampS))
+
+        print("msg = \(msgString)")
+        print("timeStamp = \(timeStampS)")
+      } else {
+        print("name not found")
+      }
+    }
+    
+    if sqlite3_finalize(statement) != SQLITE_OK {
+      let errmsg = String(cString: sqlite3_errmsg(db))
+      print("error finalizing prepared statement: \(errmsg)")
+    }
+    
+    statement = nil
+    
+    if sqlite3_close(db) != SQLITE_OK {
+      print("error closing database")
+    }
+    db = nil
+    
+    return r
+  }
+  
+  
+  
   func myStart() {
     print("\n\n\n\n\n\n\n")
     
@@ -642,9 +735,7 @@ class SqliteBroker {
       
       let name = sqlite3_column_text(statement, 1)
       if name != nil {
-        let rawPointer = UnsafeRawPointer(name!)
-        let pointer = rawPointer.assumingMemoryBound(to: UInt8.self)
-        let nameString = String(pointer.pointee)
+        let nameString = String(cString: name!)
         
         //let nameString = String(cString: UnsafePointer<Int8>(name!))
         print("name = \(nameString)")

@@ -9,10 +9,29 @@
 import UIKit
 
 class CheckListViewController:  UITableViewController {
+  
+  let sb = SqliteBroker()
+  let m = Model(table: "checkList.sqlite")
+  var rowHeight=100
+
+  
   @IBAction func AddItem(_ sender: UIBarButtonItem) {
     
-    let sb = SqliteBroker()
-    sb.myStart()
+    
+  }
+  
+  @IBAction func EditItems(_ sender: UIBarButtonItem) {
+    
+    if let e =  self.navigationItem.rightBarButtonItems?[1] {
+      if e.title == "Edit" {
+        self.tableView.isEditing = true
+        e.title = "Done"
+      } else {
+        e.title = "Edit"
+        self.tableView.isEditing = false
+      }
+    }
+    
   }
   
   var count = 0
@@ -20,22 +39,29 @@ class CheckListViewController:  UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    //sb.createTable()
+    m.create()
+    m.populate()
+    
+    
   }
   
+  
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 30
+    
+   
+    return m.count()
+    
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListID", for: indexPath)
     
-    
-    
     if let tvc = cell as? TableViewCell {
-      tvc.label0.text = "stuff: \(indexPath.row+count)"
+      tvc.label0.text = "\(m.db[indexPath.row].msg)"
       tvc.text0.text = " \(indexPath.row+count)"
-      tvc.label1.text = ""
+      tvc.label1.text = "row: \(m.db[indexPath.row].row)"
     }
     
     return cell
@@ -46,17 +72,53 @@ class CheckListViewController:  UITableViewController {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListID", for: indexPath)
     
-    
     count+=1
     
     if let tvc = cell as? TableViewCell {
-      tvc.label0.text = "stuff: \(indexPath.row)"
+      tvc.label0.text = "msg: \(m.db[indexPath.row].msg)"
       tvc.text0.text = " \(indexPath.row)"
       tvc.label1.text = "s"
     }
     
-    tableView.reloadData()
+
+    if Int(tableView.rowHeight) == rowHeight {
+      tableView.rowHeight = 250
+    } else {
+      tableView.rowHeight = CGFloat(rowHeight)
+    }
     
+    tableView.reloadData()
   }
+  
+
+  override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    
+    
+    print("here moveRowAt: \(sourceIndexPath[1]),\(destinationIndexPath[1])")
+  }
+  
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    
+    if editingStyle == .delete {
+      print("Deleted: \(indexPath[1])")
+      m.delIndex(row: indexPath[1])
+      m.populate()
+      tableView.reloadData()
+      
+    }
+  }
+  
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+  {
+    if segue.destination is AddViewController
+    {
+      let vc = segue.destination as? AddViewController
+      vc?.data = "Arthur Dent"
+      vc?.mainViewController = self
+    }
+  }
+  
+  
 }
 
