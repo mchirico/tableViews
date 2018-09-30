@@ -16,7 +16,8 @@ class Model {
   var db =   [SqliteBroker.Result]()
   
   init(table: String = "tv.sqlite") {
-    self.table = "tv.sqlite"
+    self.table = table
+
   }
   
   func create() {
