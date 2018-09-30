@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A528D29721614DB80034FD2E /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A528D29621614DB80034FD2E /* AddViewController.swift */; };
+		A53BDC1F21604C6D00D2D741 /* sqliteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53BDC1E21604C6D00D2D741 /* sqliteTests.swift */; };
+		A53BDC21216073EB00D2D741 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53BDC20216073EB00D2D741 /* Model.swift */; };
+		A53BDC232160754000D2D741 /* modelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53BDC222160754000D2D741 /* modelTest.swift */; };
 		A5D2981E215D0292007230CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2981D215D0292007230CE /* AppDelegate.swift */; };
 		A5D29820215D0292007230CE /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2981F215D0292007230CE /* CheckListViewController.swift */; };
 		A5D29823215D0292007230CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5D29821215D0292007230CE /* Main.storyboard */; };
@@ -36,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A528D29621614DB80034FD2E /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		A53BDC1E21604C6D00D2D741 /* sqliteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sqliteTests.swift; sourceTree = "<group>"; };
+		A53BDC20216073EB00D2D741 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		A53BDC222160754000D2D741 /* modelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modelTest.swift; sourceTree = "<group>"; };
 		A5D2981A215D0292007230CE /* tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D2981D215D0292007230CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5D2981F215D0292007230CE /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
@@ -102,7 +110,9 @@
 			isa = PBXGroup;
 			children = (
 				A5D2981D215D0292007230CE /* AppDelegate.swift */,
+				A528D29621614DB80034FD2E /* AddViewController.swift */,
 				A5D2984D216007AD007230CE /* SqliteBroker.swift */,
+				A53BDC20216073EB00D2D741 /* Model.swift */,
 				A5D2981F215D0292007230CE /* CheckListViewController.swift */,
 				A5D2984B215ECCFD007230CE /* TableViewCell.swift */,
 				A5D29821215D0292007230CE /* Main.storyboard */,
@@ -117,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				A5D29832215D0296007230CE /* tvTests.swift */,
+				A53BDC222160754000D2D741 /* modelTest.swift */,
+				A53BDC1E21604C6D00D2D741 /* sqliteTests.swift */,
 				A5D29834215D0296007230CE /* Info.plist */,
 			);
 			path = tvTests;
@@ -262,7 +274,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A53BDC21216073EB00D2D741 /* Model.swift in Sources */,
 				A5D2984E216007AD007230CE /* SqliteBroker.swift in Sources */,
+				A528D29721614DB80034FD2E /* AddViewController.swift in Sources */,
 				A5D2984C215ECCFD007230CE /* TableViewCell.swift in Sources */,
 				A5D29820215D0292007230CE /* CheckListViewController.swift in Sources */,
 				A5D2981E215D0292007230CE /* AppDelegate.swift in Sources */,
@@ -274,6 +288,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D29833215D0296007230CE /* tvTests.swift in Sources */,
+				A53BDC232160754000D2D741 /* modelTest.swift in Sources */,
+				A53BDC1F21604C6D00D2D741 /* sqliteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
