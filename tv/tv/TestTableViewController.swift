@@ -51,10 +51,7 @@ class TestTableViewController: UITableViewController {
   
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
-    
     return m.count()
-    
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -72,7 +69,7 @@ class TestTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print(" \(indexPath)")
     
-    let cell = tableView.dequeueReusableCell(withIdentifier: "CheckListID", for: indexPath)
+    let cell = tableView.dequeueReusableCell(withIdentifier: "TestID", for: indexPath)
     
     count+=1
     
@@ -80,7 +77,6 @@ class TestTableViewController: UITableViewController {
       tvc.label0.text = "msg: \(m.db[indexPath.row].msg)"
       
     }
-    
     
     if Int(tableView.rowHeight) == rowHeight {
       tableView.rowHeight = 250
@@ -93,7 +89,6 @@ class TestTableViewController: UITableViewController {
   
   
   override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-    
     
     print("here moveRowAt: \(sourceIndexPath[1]),\(destinationIndexPath[1])")
   }
