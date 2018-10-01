@@ -4,6 +4,5 @@
 SQLite with Swift 4.2 TableViews
 
 
-<iframe src="https://player.vimeo.com/video/292764320" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
 
