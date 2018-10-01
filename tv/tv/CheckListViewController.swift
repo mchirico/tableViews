@@ -87,8 +87,23 @@ class CheckListViewController:  UITableViewController {
       tableView.rowHeight = CGFloat(rowHeight)
     }
     
+    jump(row: indexPath.row)
     tableView.reloadData()
   }
+  
+  func jump(row: Int) {
+    
+    let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "EvC") as? EditViewController
+    
+    vc?.row = row
+    vc?.id = m.db[row].id
+    vc?.mainViewController = self
+    
+    self.navigationController?.pushViewController(vc!, animated: true)
+    
+  }
+  
+  
   
   
   override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
