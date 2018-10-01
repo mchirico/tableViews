@@ -606,7 +606,7 @@ class SqliteBroker {
     if sqlite3_exec(db, stmt, nil, nil, nil) != SQLITE_OK {
       let errmsg = String(cString: sqlite3_errmsg(db))
       print("error on sqlite3_exec: \(errmsg)")
-       print("stmt: \(stmt)")
+      print("stmt: \(stmt)")
     }
     
     if sqlite3_close(db) != SQLITE_OK {
@@ -656,9 +656,9 @@ class SqliteBroker {
         
         let msgString = String(cString: msg!)
         let timeStampS = String(cString: timeStamp!)
-
+        
         r.append(Result(id: Int(id), msg: msgString,row: Int(row), timeStamp: timeStampS))
-
+        
         print("msg = \(msgString)")
         print("timeStamp = \(timeStampS)")
       } else {

@@ -1,41 +1,45 @@
 //
-//  AddViewController.swift
+//  EditViewController.swift
 //  tv
 //
-//  Created by Michael Chirico on 9/30/18.
+//  Created by Michael Chirico on 10/1/18.
 //  Copyright © 2018 Michael Chirico. All rights reserved.
 //
 
 import UIKit
 
-class AddViewController: UIViewController {
+class EditViewController: UIViewController {
   
-  var data=""
+  @IBOutlet weak var label: UILabel!
+  @IBOutlet weak var textMsg: UITextField!
+  
+  var row=0
+  var id=0
   var mainViewController:CheckListViewController?
   
   
-  @IBOutlet weak var msgTxt: UITextField!
-  
-  
-  @IBAction func Cancel(_ sender: UIBarButtonItem) {
-    navigationController?.popViewController(animated: true)
-  }
-  
-  @IBAction func Add(_ sender: UIBarButtonItem) {
+  @IBAction func edit(_ sender: UIBarButtonItem) {
     navigationController?.popViewController(animated: true)
     
-    if let mvc = mainViewController, let txt = msgTxt.text  {
-      mvc.m.insert(msg: txt)
+    if let mvc = mainViewController, let txt = textMsg.text  {
+      mvc.m.update(id: id, msg: txt, row: row)
       mvc.m.populate()
+      print("m: \(mvc.m.db)")
       mvc.tableView.reloadData()
     }
+  }
+  
+  
+  @IBAction func cancel(_ sender: UIBarButtonItem) {
+    navigationController?.popViewController(animated: true)
     
   }
+  
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    print("Data: \(data)")
+    textMsg.text = mainViewController?.m.db[row].msg
     // Do any additional setup after loading the view.
   }
   
