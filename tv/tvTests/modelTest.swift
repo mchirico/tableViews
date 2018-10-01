@@ -54,6 +54,15 @@ class modelTests: XCTestCase {
     
   }
   
+  func testLog() {
+    m.populate()
+    XCTAssert(m.count() == 2)
+    XCTAssert(m.db[0].msg == "test")
+    m.log("This is a test")
+    m.getLogs()
+    XCTAssert(m.dblog.count == 10)
+    
+  }
   
   func testPerformanceExample() {
     // This is an example of a performance test case.

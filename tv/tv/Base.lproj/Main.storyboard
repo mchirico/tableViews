@@ -74,7 +74,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Items" id="9CU-gV-Wwh">
                         <leftBarButtonItems>
-                            <barButtonItem title="Action" id="Evj-Jb-9rz"/>
+                            <barButtonItem title="Action" id="Evj-Jb-9rz">
+                                <connections>
+                                    <segue destination="XY0-e7-Uhb" kind="show" id="t9Y-j2-x0f"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="Test" id="K10-A6-EEJ">
                                 <connections>
                                     <segue destination="vkB-H2-tmE" kind="show" id="h3W-Nc-fof"/>
@@ -264,6 +268,102 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WmX-Fv-kVp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1280.8" y="-127.28635682158921"/>
+        </scene>
+        <!--TVC2-->
+        <scene sceneID="dJX-6h-MSf">
+            <objects>
+                <tableViewController storyboardIdentifier="TestTVC2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Oj6-XT-Oil" customClass="TestTVC2" customModule="tv" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CnX-rB-CFa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="4UV-f4-TET">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4UV-f4-TET" id="mCc-OE-Esg">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Oj6-XT-Oil" id="Uv2-Lv-c5d"/>
+                            <outlet property="delegate" destination="Oj6-XT-Oil" id="0K8-oj-dOd"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="TVC2" id="4u3-h3-Ug5">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="QUL-Nm-rov">
+                            <connections>
+                                <action selector="back:" destination="Oj6-XT-Oil" id="Jmj-Hh-W5h"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="RAm-tk-bpx">
+                            <connections>
+                                <action selector="add:" destination="Oj6-XT-Oil" id="G2p-bu-hpP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p2W-RH-Rsd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="158" y="-804"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="yQI-KN-jN7">
+            <objects>
+                <viewController restorationIdentifier="TestEdit" storyboardIdentifier="TestEdit" id="XY0-e7-Uhb" customClass="TestEditViewController" customModule="tv" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wbH-AY-HwC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Msg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exv-t9-4BJ">
+                                <rect key="frame" x="16" y="77" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ix2-TN-KgI">
+                                <rect key="frame" x="16" y="106" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Exv-t9-4BJ" firstAttribute="leading" secondItem="fOQ-0F-guW" secondAttribute="leading" constant="16" id="0cn-4a-qQM"/>
+                            <constraint firstItem="fOQ-0F-guW" firstAttribute="trailing" secondItem="Exv-t9-4BJ" secondAttribute="trailing" constant="317" id="ITi-fw-dP7"/>
+                            <constraint firstItem="ix2-TN-KgI" firstAttribute="top" secondItem="Exv-t9-4BJ" secondAttribute="bottom" constant="8" id="fnw-nf-Gy0"/>
+                            <constraint firstItem="fOQ-0F-guW" firstAttribute="trailing" secondItem="ix2-TN-KgI" secondAttribute="trailing" constant="16" id="hHO-qa-rYy"/>
+                            <constraint firstItem="ix2-TN-KgI" firstAttribute="leading" secondItem="fOQ-0F-guW" secondAttribute="leading" constant="16" id="pE1-PW-g4e"/>
+                            <constraint firstItem="Exv-t9-4BJ" firstAttribute="top" secondItem="fOQ-0F-guW" secondAttribute="top" constant="13" id="tOM-Dc-vT3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fOQ-0F-guW"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="z5t-Zs-dJz">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="upP-j2-Nrj">
+                            <connections>
+                                <action selector="Cancel:" destination="XY0-e7-Uhb" id="cxr-Vd-fnR"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Update" id="g1S-06-7s6">
+                            <connections>
+                                <action selector="Update:" destination="XY0-e7-Uhb" id="fzO-cV-iBD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="labelMSG" destination="Exv-t9-4BJ" id="mNF-uN-h9r"/>
+                        <outlet property="textMsg" destination="ix2-TN-KgI" id="LDN-Oi-hfG"/>
+                        <outlet property="view" destination="wbH-AY-HwC" id="8br-FG-pOs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1f7-ei-EBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-567.20000000000005" y="-803.74812593703155"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UUb-ae-AOd">
