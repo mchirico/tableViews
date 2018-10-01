@@ -9,18 +9,18 @@
 import UIKit
 
 class TestAddViewController: UIViewController {
-
+  
   var data=""
   var mainViewController:TestTableViewController?
   
   @IBOutlet weak var msgTxt: UITextField!
   
   @IBAction func Cancel(_ sender: UIBarButtonItem) {
-     navigationController?.popViewController(animated: true)
+    navigationController?.popViewController(animated: true)
   }
   
   @IBAction func Add(_ sender: UIBarButtonItem) {
-     navigationController?.popViewController(animated: true)
+    navigationController?.popViewController(animated: true)
     
     if let mvc = mainViewController, let txt = msgTxt.text  {
       mvc.m.insert(msg: txt)
@@ -33,13 +33,13 @@ class TestAddViewController: UIViewController {
   
   
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-
-   
-
+    // Do any additional setup after loading the view.
+  }
+  
+  
+  
+  
 }

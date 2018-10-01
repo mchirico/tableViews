@@ -14,10 +14,11 @@ class Model {
   var table: String
   
   var db =   [SqliteBroker.Result]()
+  var dblog =  [SqliteBroker.Result]()
   
   init(table: String = "tv.sqlite") {
     self.table = table
-
+    
   }
   
   func create() {
@@ -48,6 +49,56 @@ class Model {
     
     sb.sqlExe(table: table, stmt: stmt)
     
+    createLogging()
+  }
+  
+  
+  private func createLogging(){
+    var stmt = """
+      create table if not exists log
+         (id integer primary key autoincrement,
+          log text,
+          row int,
+          timeStamp DateTime );
+    """
+    sb.sqlExe(table: table, stmt: stmt)
+    
+    stmt = """
+    CREATE TRIGGER if NOT EXISTS insert_log_timeStamp AFTER  INSERT ON log
+    BEGIN
+    UPDATE log SET timeStamp = DATETIME('NOW')  WHERE rowid = new.rowid;
+    END;
+    """
+    
+    sb.sqlExe(table: table, stmt: stmt)
+    
+    stmt = """
+    CREATE TRIGGER if NOT EXISTS update_log_timeStamp AFTER  UPDATE ON log
+    BEGIN
+    UPDATE log SET timeStamp = DATETIME('NOW')  WHERE rowid = new.rowid;
+    END;
+    """
+    
+    sb.sqlExe(table: table, stmt: stmt)
+    
+    
+    stmt = """
+    CREATE TRIGGER if NOT EXISTS insert_logItem_timeStamp AFTER  INSERT ON item
+    BEGIN
+    insert into log (log) select 'insert: '||msg||', '||new.rowid from item;
+    END;
+    """
+    
+    sb.sqlExe(table: table, stmt: stmt)
+    
+    stmt = """
+    CREATE TRIGGER if NOT EXISTS update_logItem_timeStamp AFTER  UPDATE ON item
+    BEGIN
+    insert into log (log) select 'update: '||msg||', '||new.rowid from item;
+    END;
+    """
+    
+    sb.sqlExe(table: table, stmt: stmt)
   }
   
   
@@ -59,6 +110,14 @@ class Model {
   func insert(msg: String){
     let stmt = """
     insert into item (msg,row)  select '\(msg)',max(row)+1 from item;
+    """
+    sb.sqlExe(table: table, stmt: stmt)
+    
+  }
+  
+  func log(_ log: String){
+    let stmt = """
+    insert into log (log,row)  values ('\(log)',1);
     """
     sb.sqlExe(table: table, stmt: stmt)
     
@@ -77,14 +136,25 @@ class Model {
   }
   
   func drop(){
-    var stmt = "drop  table if EXISTS item;"
+    var stmt = "drop table if EXISTS item;"
     sb.sqlExe(table: table, stmt: stmt)
     
+    stmt = "drop table if EXISTS log;"
+    sb.sqlExe(table: table, stmt: stmt)
     
     stmt = "drop trigger if EXISTS insert_item_timeStamp;"
     sb.sqlExe(table: table, stmt: stmt)
     
     stmt = "drop trigger if EXISTS update_item_timeStamp;"
+    sb.sqlExe(table: table, stmt: stmt)
+    
+    stmt = "drop trigger if EXISTS insert_log_timeStamp;"
+    sb.sqlExe(table: table, stmt: stmt)
+    
+    stmt = "drop trigger if EXISTS  insert_logItem_timeStamp;"
+    sb.sqlExe(table: table, stmt: stmt)
+    
+    stmt = "drop trigger if EXISTS update_logItem_timeStamp;"
     sb.sqlExe(table: table, stmt: stmt)
     
   }
@@ -98,11 +168,37 @@ class Model {
   
   func populate(){
     let stmt = """
-    select row, msg, timeStamp from item order by row
+      select id, row, msg, timeStamp from item order by row
     """
     db = sb.sqlQuery(table: table, stmt: stmt)
     
   }
+  
+  func getLogs(){
+    let stmt = """
+      select id, row, log, timeStamp from log order by timeStamp desc
+    """
+    dblog = sb.sqlQuery(table: table, stmt: stmt)
+    
+  }
+  
+  
+  func update(id: Int, msg: String, row: Int) {
+    
+    print("id: \(id), row: \(row), msg: \(msg)")
+    
+    let stmt = """
+    update item
+    set msg = '\(msg)',row = \(row) where
+    id=\(id);
+    
+    """
+    sb.sqlExe(table: table, stmt: stmt)
+    self.populate()
+    
+  }
+  
+  
   
   func swap(from: Int,to: Int){
     if from == to {

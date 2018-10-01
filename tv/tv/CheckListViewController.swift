@@ -13,7 +13,7 @@ class CheckListViewController:  UITableViewController {
   let sb = SqliteBroker()
   let m = Model(table: "checkList.sqlite")
   var rowHeight=100
-
+  
   
   @IBAction func AddItem(_ sender: UIBarButtonItem) {
     
@@ -49,7 +49,7 @@ class CheckListViewController:  UITableViewController {
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-   
+    
     return m.count()
     
   }
@@ -80,7 +80,7 @@ class CheckListViewController:  UITableViewController {
       tvc.label1.text = "s"
     }
     
-
+    
     if Int(tableView.rowHeight) == rowHeight {
       tableView.rowHeight = 250
     } else {
@@ -90,10 +90,11 @@ class CheckListViewController:  UITableViewController {
     tableView.reloadData()
   }
   
-
+  
   override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
     
-    
+    m.swap(from: sourceIndexPath[1], to: destinationIndexPath[1])
+    m.populate()
     print("here moveRowAt: \(sourceIndexPath[1]),\(destinationIndexPath[1])")
   }
   

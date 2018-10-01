@@ -85,11 +85,39 @@ class TestTableViewController: UITableViewController {
     }
     
     tableView.reloadData()
+    
+    print("\n\n*************\n\n \(indexPath.row) \n\n****************\n\n")
+    
+    jump(row: indexPath.row)
+    //jumpTVC2()
+    
+  }
+  
+  
+  func jump(row: Int) {
+    
+    let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "TestEdit") as? TestEditViewController
+    
+    vc?.row = row
+    vc?.id = m.db[row].id
+    vc?.mainViewController = self
+    
+    self.navigationController?.pushViewController(vc!, animated: true)
+    
+  }
+  
+  func jumpTVC2() {
+    
+    let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "TestTVC2") as? TestTVC2
+    self.navigationController?.pushViewController(vc!, animated: true)
+    
   }
   
   
   override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
     
+    m.swap(from: sourceIndexPath[1], to: destinationIndexPath[1])
+    m.populate()
     print("here moveRowAt: \(sourceIndexPath[1]),\(destinationIndexPath[1])")
   }
   

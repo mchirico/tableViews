@@ -14,6 +14,8 @@
 		A5BE90DE21617B89001E7F8B /* TestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE90DD21617B89001E7F8B /* TestTableViewController.swift */; };
 		A5BE90E021617E39001E7F8B /* TestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE90DF21617E39001E7F8B /* TestTableViewCell.swift */; };
 		A5BE90E221618428001E7F8B /* TestAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE90E121618428001E7F8B /* TestAddViewController.swift */; };
+		A5BE90E42162440A001E7F8B /* TestEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE90E321624409001E7F8B /* TestEditViewController.swift */; };
+		A5BE90E721625EEA001E7F8B /* TestTVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BE90E621625EEA001E7F8B /* TestTVC2.swift */; };
 		A5D2981E215D0292007230CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2981D215D0292007230CE /* AppDelegate.swift */; };
 		A5D29820215D0292007230CE /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2981F215D0292007230CE /* CheckListViewController.swift */; };
 		A5D29823215D0292007230CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5D29821215D0292007230CE /* Main.storyboard */; };
@@ -50,6 +52,8 @@
 		A5BE90DD21617B89001E7F8B /* TestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewController.swift; sourceTree = "<group>"; };
 		A5BE90DF21617E39001E7F8B /* TestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableViewCell.swift; sourceTree = "<group>"; };
 		A5BE90E121618428001E7F8B /* TestAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAddViewController.swift; sourceTree = "<group>"; };
+		A5BE90E321624409001E7F8B /* TestEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEditViewController.swift; sourceTree = "<group>"; };
+		A5BE90E621625EEA001E7F8B /* TestTVC2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTVC2.swift; sourceTree = "<group>"; };
 		A5D2981A215D0292007230CE /* tv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D2981D215D0292007230CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5D2981F215D0292007230CE /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +96,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5BE90E52162441A001E7F8B /* Test Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5BE90DF21617E39001E7F8B /* TestTableViewCell.swift */,
+				A5BE90DD21617B89001E7F8B /* TestTableViewController.swift */,
+				A5BE90E121618428001E7F8B /* TestAddViewController.swift */,
+				A5BE90E321624409001E7F8B /* TestEditViewController.swift */,
+				A5BE90E621625EEA001E7F8B /* TestTVC2.swift */,
+			);
+			path = "Test Views";
+			sourceTree = "<group>";
+		};
 		A5D29811215D0292007230CE = {
 			isa = PBXGroup;
 			children = (
@@ -115,15 +131,13 @@
 		A5D2981C215D0292007230CE /* tv */ = {
 			isa = PBXGroup;
 			children = (
+				A5BE90E52162441A001E7F8B /* Test Views */,
 				A5D2981D215D0292007230CE /* AppDelegate.swift */,
 				A528D29621614DB80034FD2E /* AddViewController.swift */,
 				A5D2984D216007AD007230CE /* SqliteBroker.swift */,
 				A53BDC20216073EB00D2D741 /* Model.swift */,
 				A5D2981F215D0292007230CE /* CheckListViewController.swift */,
 				A5D2984B215ECCFD007230CE /* TableViewCell.swift */,
-				A5BE90DF21617E39001E7F8B /* TestTableViewCell.swift */,
-				A5BE90DD21617B89001E7F8B /* TestTableViewController.swift */,
-				A5BE90E121618428001E7F8B /* TestAddViewController.swift */,
 				A5D29821215D0292007230CE /* Main.storyboard */,
 				A5D29824215D0295007230CE /* Assets.xcassets */,
 				A5D29826215D0295007230CE /* LaunchScreen.storyboard */,
@@ -286,9 +300,11 @@
 				A5BE90DE21617B89001E7F8B /* TestTableViewController.swift in Sources */,
 				A53BDC21216073EB00D2D741 /* Model.swift in Sources */,
 				A5D2984E216007AD007230CE /* SqliteBroker.swift in Sources */,
+				A5BE90E721625EEA001E7F8B /* TestTVC2.swift in Sources */,
 				A528D29721614DB80034FD2E /* AddViewController.swift in Sources */,
 				A5D2984C215ECCFD007230CE /* TableViewCell.swift in Sources */,
 				A5BE90E021617E39001E7F8B /* TestTableViewCell.swift in Sources */,
+				A5BE90E42162440A001E7F8B /* TestEditViewController.swift in Sources */,
 				A5BE90E221618428001E7F8B /* TestAddViewController.swift in Sources */,
 				A5D29820215D0292007230CE /* CheckListViewController.swift in Sources */,
 				A5D2981E215D0292007230CE /* AppDelegate.swift in Sources */,

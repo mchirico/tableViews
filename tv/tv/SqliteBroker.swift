@@ -617,6 +617,7 @@ class SqliteBroker {
   
   
   struct Result {
+    var id: Int
     var msg: String
     var row: Int
     var timeStamp: String
@@ -643,18 +644,20 @@ class SqliteBroker {
     var r = [Result]()
     
     while sqlite3_step(statement) == SQLITE_ROW {
-      let row = sqlite3_column_int64(statement, 0)
+      
+      let id = sqlite3_column_int64(statement, 0)
+      let row = sqlite3_column_int64(statement, 1)
       print("id = \(row); ", terminator: "")
       
-      let msg = sqlite3_column_text(statement, 1)
-      let timeStamp = sqlite3_column_text(statement, 2)
+      let msg = sqlite3_column_text(statement, 2)
+      let timeStamp = sqlite3_column_text(statement, 3)
       
       if msg != nil && timeStamp != nil {
         
         let msgString = String(cString: msg!)
         let timeStampS = String(cString: timeStamp!)
 
-        r.append(Result(msg: msgString,row: Int(row), timeStamp: timeStampS))
+        r.append(Result(id: Int(id), msg: msgString,row: Int(row), timeStamp: timeStampS))
 
         print("msg = \(msgString)")
         print("timeStamp = \(timeStampS)")
